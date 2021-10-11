@@ -9,9 +9,9 @@ public class Main {
         int opcion , continuar = 0;
         Scanner input = new Scanner(System.in);
         ArrayList<Productos> listaProductos = new ArrayList<Productos>();
-        System.out.print("1: Registrar productos   2: Ver Productos  3: Salir opcion: ");
-        opcion = input.nextInt();
         do {
+            System.out.print("1: Registrar productos   2: Ver Productos  3: Salir opcion: ");
+            opcion = input.nextInt();
             switch (opcion) {
                 case 1:
                     Productos producto = new Productos();
@@ -20,18 +20,18 @@ public class Main {
                     producto.setNombre(input.nextLine());
                     System.out.print("Codigo : ");
                     producto.setCodigo(input.nextLine());
-                    do{
+
                         try {
                             System.out.print("Stock : ");
                             producto.setStock(input.nextInt());
+                            if(producto.getStock() != input.nextInt()){
+                                throw new Error("debe ingresar un numero");
+                            }
                             listaProductos.add(producto);
-                            continuar = 2;
                             break;
                         } catch (InputMismatchException ex) {
-                            System.out.println("Debe ingresar un numero");
-                            continuar = 2;
+                            ex.getMessage();
                         }
-                    }while(continuar != 2);
                     break;
                 case 2:
                     for (Productos p : listaProductos) {
@@ -42,6 +42,6 @@ public class Main {
                     }
                     break;
             }
-        }while(opcion != 3);
+        }while(opcion != 3 );
     }
 }
