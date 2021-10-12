@@ -6,7 +6,8 @@ import java.util.Scanner;
 
 public class Main {
     public static void main(String[] args) {
-        int opcion , continuar = 0;
+        int opcion;
+        boolean continuar;
         Scanner input = new Scanner(System.in);
         ArrayList<Productos> listaProductos = new ArrayList<Productos>();
         do {
@@ -20,18 +21,17 @@ public class Main {
                     producto.setNombre(input.nextLine());
                     System.out.print("Codigo : ");
                     producto.setCodigo(input.nextLine());
-
-                        try {
-                            System.out.print("Stock : ");
-                            producto.setStock(input.nextInt());
-                            if(producto.getStock() != input.nextInt()){
-                                throw new Error("debe ingresar un numero");
-                            }
-                            listaProductos.add(producto);
-                            break;
-                        } catch (InputMismatchException ex) {
-                            ex.getMessage();
-                        }
+                do {
+                    try {
+                        System.out.print("Stock : ");
+                        producto.setStock(input.nextInt());
+                        listaProductos.add(producto);
+                        continuar = true;
+                    } catch (InputMismatchException ex) {
+                        System.out.println("Debe ingresar un numero");
+                        continuar = false;
+                    }
+                }while(continuar  != true);
                     break;
                 case 2:
                     for (Productos p : listaProductos) {
