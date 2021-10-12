@@ -1,13 +1,13 @@
 package ej2;
 
 import java.util.ArrayList;
-import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class Main {
     public static void main(String[] args) {
         int opcion;
-        boolean continuar;
+        int stockInput = 0;
+        boolean continuar = false;
         Scanner input = new Scanner(System.in);
         ArrayList<Productos> listaProductos = new ArrayList<Productos>();
         do {
@@ -15,23 +15,23 @@ public class Main {
             opcion = input.nextInt();
             switch (opcion) {
                 case 1:
-                    Productos producto = new Productos();
+                     Productos producto = new Productos();
                     input.nextLine();
                     System.out.print("Nombre producto : ");
-                    producto.setNombre(input.nextLine());
+                     producto.setNombre(input.nextLine());
                     System.out.print("Codigo : ");
-                    producto.setCodigo(input.nextLine());
-                do {
-                    try {
+                     producto.setCodigo(input.nextLine());
+                    do {
+                        Scanner inputBucle2 = new Scanner(System.in);
                         System.out.print("Stock : ");
-                        producto.setStock(input.nextInt());
-                        listaProductos.add(producto);
-                        continuar = true;
-                    } catch (InputMismatchException ex) {
-                        System.out.println("Debe ingresar un numero");
-                        continuar = false;
-                    }
-                }while(continuar  != true);
+                        try {
+                            stockInput = inputBucle2.nextInt();
+                            listaProductos.add(producto);
+                            continuar = true;
+                        } catch (Exception ignored) {
+                            System.out.println("Debe ingresar un numero");
+                        }
+                    }while(!continuar);
                     break;
                 case 2:
                     for (Productos p : listaProductos) {
