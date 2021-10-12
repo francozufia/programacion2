@@ -1,9 +1,7 @@
 package ej1;
 
-import javax.swing.text.html.HTMLDocument;
 import java.util.ArrayList;
 import java.util.InputMismatchException;
-import java.util.Iterator;
 import java.util.Scanner;
 
 public class Main {
@@ -105,6 +103,7 @@ public class Main {
                                     break;
                             }
                         }
+                        break;
                     case 7 :break;
                     default:
                         System.out.println("Elija numero del 1 al 6");
