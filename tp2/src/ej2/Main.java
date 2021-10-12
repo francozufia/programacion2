@@ -1,17 +1,18 @@
 package ej2;
 
 import java.util.ArrayList;
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class Main {
     public static void main(String[] args) {
-        int opcion;
+        int opcion = 0;
         int stockInput = 0;
         boolean continuar = false;
         Scanner input = new Scanner(System.in);
         ArrayList<Productos> listaProductos = new ArrayList<Productos>();
         do {
-            System.out.print("1: Registrar productos   2: Ver Productos  3: Salir opcion: ");
+            System.out.print("1: Registrar productos   2: Ver Productos  3: Salir  opcion--> ");
             opcion = input.nextInt();
             switch (opcion) {
                 case 1:
@@ -26,9 +27,10 @@ public class Main {
                         System.out.print("Stock : ");
                         try {
                             stockInput = inputBucle2.nextInt();
+                            producto.setStock(stockInput);
                             listaProductos.add(producto);
                             continuar = true;
-                        } catch (Exception ignored) {
+                        } catch (InputMismatchException ignored) {
                             System.out.println("Debe ingresar un numero");
                         }
                     }while(!continuar);
